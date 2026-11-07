@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100408">
+  <meta name="description" content="A little universe of love, made just for Suki.">
+  <title>To my beautiful girl</title>
+  <link rel="icon" type="image/webp" href="heart-icon.webp">
+  <meta property="og:title" content="To my beautiful girl">
+  <meta name="twitter:title" content="To my beautiful girl">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js" defer></script><script src="script.js" defer></script><script src="galaxy.js" defer></script>
+</head>
+<body class="awaiting-entry">
+  <button id="entrance" class="entrance" type="button" aria-label="Click anywhere, my love, to enter and play music"><span class="entrance-copy">Click anywhere, ml <svg class="entrance-heart-icon" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span></button>
+  <canvas id="universe" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div id="love-dust" aria-hidden="true"></div>
+  <audio id="song" src="pretty-baby.mp3" preload="auto" loop></audio>
+  <header><a class="wordmark" href="./">s<span><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span>ki<span class="wordmark-dot">.</span></a><span class="header-note">a tiny corner of forever</span><div class="volume-control"><button id="soundless" class="motion" aria-label="Mute music" title="Mute music" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="sound-waves" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/><path class="sound-off" d="m16 9 6 6m0-6-6 6"/></svg></button><div class="volume-popover"><label for="volume">A little louder, love? <span><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span></label><div class="volume-row"><input id="volume" type="range" min="0" max="100" value="65" aria-label="Music volume"><output id="volume-value" for="volume">65%</output></div></div></div></header>
+  <p id="music-status" role="status" class="music-status"></p>
+  <main>
+    <section class="intro" aria-label="A universe for you">
+      <div class="eyebrow"><span></span> SOME THINGS ARE WRITTEN IN THE STARS</div>
+      <p class="intro-copy">A million little stars.<br>One very favorite person.</p>
+      <div class="heart-stage" aria-hidden="true"><canvas id="heart"></canvas><span class="orbit-word one"></span><span class="orbit-word two"></span><span class="orbit-word three"></span><span class="heart-caption">every little piece of my heart</span></div>
+      <div class="coordinate">YOU + ME <span>✧</span> EVERY UNIVERSE</div>
+    </section>
+    <section class="letter-wrap">
+      <div class="letter" id="letter">
+        <div class="lock-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="11" rx="3.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="15.5" r="1.2" fill="currentColor"/></svg></div>
+        <div id="locked"><h2>A little secret between us.</h2><p>There’s something here for you. You just need the magic words.</p>
+          <form id="unlock-form"><label for="password">OUR SECRET PASSWORD</label><div class="password-field"><input id="password" type="password" autocomplete="off" placeholder="Only you would know…" required aria-describedby="feedback"><button type="button" id="reveal" aria-label="Show password"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div><p id="feedback" class="feedback" aria-live="polite"></p><button class="unlock" type="submit">Unlock</button></form>
+          <button class="hint" id="hint">Need a little hint? <span><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span></button><p class="hint-text" id="hint-text" hidden></p>
+        </div>
+        <div id="unlocked" hidden tabindex="-1"><div class="eyebrow">YOU FOUND YOUR WAY IN <svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></div><h2 id="message-title"></h2><p class="love-message" id="message"></p><p class="signature">Always yours,<br><em id="from"></em></p><button class="hint" id="relock">Seal it with a kiss ↻</button></div>
+        <div class="card-bottom"><span>✧</span> made with a whole lot of love <span>✧</span></div>
+      </div>
+      <p class="under-card">Some things are too special to leave unlocked.</p>
+    </section>
+  </main>
+  <section id="unlock-sequence" class="unlock-sequence" hidden aria-label="Unlocking your universe" role="status" tabindex="-1">
+    <canvas id="unlock-cosmos" aria-hidden="true"></canvas><div class="unlock-tunnel" id="unlock-tunnel" aria-hidden="true"></div>
+    <div class="unlock-portal" aria-hidden="true"><div class="portal-ring"></div><div class="portal-ring ring-two"></div><svg class="portal-lock" width="64" height="64" viewBox="0 0 64 64" fill="none"><path class="portal-shackle" d="M21 29V20a11 11 0 0 1 22 0v9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><rect x="15" y="28" width="34" height="27" rx="9" stroke="currentColor" stroke-width="2"/><path d="M32 38v7" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><svg class="portal-heart" width="68" height="68" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></div>
+    <p class="unlock-whisper">You have the key to my heart</p><span class="unlock-subtitle">AND EVERY LITTLE PIECE OF IT IS YOURS.</span>
+    <div class="unlock-flash" aria-hidden="true"></div>
+  </section>
+  <section id="galaxy-room" class="galaxy-room" hidden aria-label="Our heart universe">
+    <canvas id="galaxy-canvas" tabindex="0" role="img" aria-label="Interactive heart universe. Drag to orbit or use arrow keys to change the viewing angle."></canvas>
+    <div id="universe-envelopes" class="universe-envelopes" aria-label="Floating love notes"></div>
+    <dialog id="envelope-dialog" class="envelope-dialog" aria-labelledby="envelope-title"><button id="envelope-close" class="envelope-close" aria-label="Close love note">×</button><span class="note-kicker">A LITTLE LOVE, JUST FOR YOU</span><h2 id="envelope-title"></h2><p id="envelope-message"></p><em id="envelope-from"></em></dialog>
+    <button id="galaxy-back" class="galaxy-back">Back</button>
+    <div class="galaxy-heading"><span>IN EVERY UNIVERSE</span><h2>It’s always you.</h2></div>
+    <div class="galaxy-bottom"><p>you + me, to infinity <svg class="infinity-heart" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></p><button id="galaxy-letter" class="galaxy-letter" aria-expanded="false" aria-controls="cosmic-note">A little note for you</button><dialog id="cosmic-note" aria-labelledby="cosmic-title"><button id="cosmic-close" class="envelope-close" aria-label="Close love note">×</button><h2 id="cosmic-title"></h2><p id="cosmic-message"></p><p class="envelope-invitation">Psst… the little floating envelopes are for you, too. Click one to find another love note tucked among the stars.</p><em id="cosmic-from"></em></dialog></div>
+  </section>
+  <footer><span></span><span>for you. always. <b><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></b></span></footer>
+</body>
+</html>

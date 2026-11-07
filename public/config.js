@@ -1,0 +1,24 @@
+// Personalize everything here, then refresh the page.
+// This is a playful password gate, not secure protection: visitors can read this file.
+window.SUKI = {
+  name: 'Suki',
+  from: 'Your favorite person',
+  password: 'yabie',
+  hint: 'The nickname you call me 👀',
+  title: 'A little universe, just for you.',
+  message: 'Of all the stars, in all the galaxies, I’m so glad I found you. You make the ordinary feel like magic. This tiny corner of the universe will always be yours.',
+  floatingWords: ['my love', 'always you', 'to infinity', 'you + me', 'forever & ever', 'my yabie', 'beautiful girl'],
+  // Each envelope opens one of these notes. Add or edit as many as you like.
+  loveNotes: [
+    { title: 'My favorite place', message: 'Anywhere feels a little more like home when I’m with you.' },
+    { title: 'A tiny reminder', message: 'You’re loved on the bright days, the quiet days, and all the days in between.' },
+    { title: 'If I could', message: 'I’d bottle up every little moment with you and keep them like stars.' },
+    { title: 'Always you', message: 'Out of all the beautiful things in this universe, you’re still my favorite.' },
+    { title: 'The little things', message: 'Your smile, your laugh, the way you’re you. Those are my kind of magic.' },
+    { title: 'One more thing', message: 'No matter how many times I say it, I’ll always mean it: I’m so glad it’s you.' },
+    { title: 'My beautiful girl', message: 'If I could send you a little warmth through this screen, it would be the biggest hug. You deserve all the softness in the world.', orbit: 'inner' },
+    { title: 'My yabie', message: 'Your nickname is a little word with a whole universe of love tucked inside it.', orbit: 'inner' },
+    { title: 'Close to my heart', message: 'Even in a galaxy this big, I’d keep a place for you right beside my heart.', orbit: 'inner' },
+    { title: 'Just because', message: 'No special occasion. No big reason. Just me, thinking of you and smiling.', orbit: 'inner' },
+  ],
+};

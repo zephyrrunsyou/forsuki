@@ -1,0 +1,14 @@
+# Local hosting state and previous preview checkout
+/.vercel/
+/suki/
+/.sites-archive-*/
+
+# Generated deployment bundles
+/*.tar.gz
+
+# Local dependencies and private settings
+node_modules/
+.env
+.env.*
+!.env.example
+*.log

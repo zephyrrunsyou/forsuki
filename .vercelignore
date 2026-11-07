@@ -1,0 +1,9 @@
+suki/
+.sites-archive-*/
+*.tar.gz
+.git/
+.vercel/
+node_modules/
+.env
+.env.*
+*.log
