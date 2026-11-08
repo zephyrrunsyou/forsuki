@@ -16,6 +16,8 @@ No environment variables, server, or package installation are required. All musi
 
 Edit `public/config.js` to change the password, hint, sender, main message, floating words, and envelope love notes. The current password is `yabie`, with any capitalization accepted. Set a note's `orbit` to `inner` to place its envelope on the spiral arms.
 
+Unopened envelopes show a little heart badge. Opening a note removes its badge for the current visit. Reloading the page resets every envelope to unread; read status is not saved in browser storage.
+
 This password is a playful reveal, not secure authentication: its value and the notes are visible in the downloaded website files. Do not use a real account password or put sensitive information here.
 
 ## Preview locally

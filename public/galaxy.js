@@ -78,10 +78,19 @@ $('cosmic-message').textContent=settings.message;
 $('cosmic-from').textContent='Always yours, '+settings.from;
 const envelopeDialog=$('envelope-dialog');
 const orbitingEnvelopes=[];
+// Read status lasts only until the page is reloaded.
+const readNoteKeys=new Set();
 (settings.loveNotes||[]).forEach((note,index)=>{
   const envelope=document.createElement('button');
   envelope.type='button';envelope.className='floating-envelope';
-  envelope.setAttribute('aria-label',`Open love note ${index+1}: ${note.title}`);
+  const noteKey=note.id||JSON.stringify([note.title,note.message]);
+  function updateReadBadge(){
+    const read=readNoteKeys.has(noteKey);
+    envelope.classList.toggle('note-read',read);
+    envelope.setAttribute('aria-label',`${read?'Read':'Unread'} love note ${index+1}: ${note.title}`);
+    envelope.title=read?'Read love note':'A new little love note';
+  }
+  updateReadBadge();
   envelope.setAttribute('aria-haspopup','dialog');
   const inner=note.orbit==='inner',sameLayer=settings.loveNotes.filter(item=>(item.orbit==='inner')===inner);
   const layerIndex=settings.loveNotes.slice(0,index).filter(item=>(item.orbit==='inner')===inner).length;
@@ -92,8 +101,11 @@ const orbitingEnvelopes=[];
     $('envelope-message').textContent=note.message;
     $('envelope-from').textContent='Always yours, '+settings.from;
     envelopeDialog.showModal();
-    envelope.classList.add('note-read');
+    readNoteKeys.add(noteKey);updateReadBadge();
   });
+  const badge=document.createElement('span');
+  badge.className='unread-badge';badge.setAttribute('aria-hidden','true');
+  badge.appendChild(heartIcon());envelope.appendChild(badge);
   $('universe-envelopes').appendChild(envelope);
 });
 $('envelope-close').addEventListener('click',()=>envelopeDialog.close());

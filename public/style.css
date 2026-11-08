@@ -99,6 +99,7 @@
 #cosmic-note .envelope-invitation{margin:22px 0;padding-top:18px;border-top:1px solid #efa7ca26;color:#f2bbd2;font-size:12px;font-style:italic;line-height:1.8}
 
 .infinity-heart{display:inline-block;vertical-align:-3px;margin-left:5px;fill:#efa0c0;stroke:#ffc6df;stroke-width:.7;filter:drop-shadow(0 0 6px #ef7eb666)}
+.unread-badge{position:absolute;right:-5px;top:-6px;width:17px;height:17px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#ffd4e7,#ec8eb6);color:#6b2549;border:2px solid #251020;box-shadow:0 0 11px #fa8dc975;pointer-events:none}.floating-envelope .unread-badge svg{width:8px;height:8px;filter:none;vertical-align:0}.floating-envelope.note-read .unread-badge{display:none}
 
 #cosmic-note{position:fixed;inset:0;margin:auto;transform:none;width:min(430px,calc(100vw - 40px));max-height:80svh;height:fit-content;text-align:center;padding:42px 30px 30px;color:#ffe5ef}#cosmic-note::backdrop{background:#08020bc9;backdrop-filter:blur(8px)}
 
