@@ -28,6 +28,8 @@ const melodies = {
   reveal: [523.25, 659.25, 783.99, 1046.5, 1318.51],
   tap: [659.25],
   love: [659.25, 880, 1046.5],
+  cinema: [392, 523.25, 659.25, 783.99],
+  arcade: [523.25, 783.99, 659.25, 1046.5, 1318.51],
 };
 let audioContext;
 let soundGain;
@@ -58,7 +60,6 @@ function playEffect(effect) {
       oscillator.stop(time + .2);
     });
   } catch {
-    // The invitation remains usable if audio is unavailable.
   }
 }
 
@@ -291,7 +292,6 @@ const localFormats = Object.fromEntries([perthZone, sacramentoZone].map(zone => 
 ]));
 
 function dateInstant(day, hour) {
-  // Perth stays on AWST (UTC+08:00). Sacramento's offset depends on the date.
   return new Date(day + 'T' + String(hour).padStart(2, '0') + ':00:00+08:00');
 }
 
@@ -388,12 +388,137 @@ dateForm.addEventListener('submit', event => {
     return;
   }
   const instant = dateInstant(form.get('date'), Number(time));
-  dateSummary.textContent = activity + ' · ' + localFormats[perthZone].format(instant) + ' (Perth time).';
   sacramentoPlan = activity + ' · ' + localFormats[sacramentoZone].format(instant) + ' (Sacramento time).';
+  confirmedDate = { activity, instant };
+  document.getElementById('ticket-activity').textContent = activity;
+  dateSummary.textContent = localFormats[perthZone].format(instant) + ' (Perth time)';
   copyFallback.hidden = true;
   copyStatus.textContent = '';
   showScreen('done', 3, 'Date picked');
+  const movie = activity === 'Cozy movie night';
+  activityReveal.classList.toggle('movie-reveal', movie);
+  document.getElementById('reveal-title').textContent = movie ? 'Two seats, just for us' : 'Ready, Player 2?';
+  document.getElementById('reveal-copy').textContent = movie
+    ? 'Bring a blanket and your favorite snack. I’ll save you the seat next to me.'
+    : 'Yabie and Gooby are on the same team. A little friendly rivalry is allowed.';
+  activityReveal.showModal();
+  playEffect(movie ? 'cinema' : 'arcade');
 });
+
+const activityReveal = document.getElementById('activity-reveal');
+const secretNote = document.getElementById('secret-note');
+const countdownBack = document.getElementById('countdown-back');
+let confirmedDate;
+let countdownTimer;
+activityReveal.addEventListener('close', () => {
+  document.querySelector('#done h2').focus({ preventScroll: true });
+  sparkleBurst(document.getElementById('ticket-stamp'), 24);
+});
+document.getElementById('open-secret').addEventListener('click', () => {
+  playEffect('love');
+  secretNote.showModal();
+});
+
+function showCountdown({ activity, instant }) {
+  document.getElementById('countdown-activity').textContent = activity;
+  const local = new Intl.DateTimeFormat(undefined, { dateStyle: 'full', timeStyle: 'short' }).format(instant);
+  document.getElementById('countdown-local').textContent = local + ' · Your local time';
+  const clock = document.getElementById('countdown-clock');
+  function updateClock() {
+    const seconds = Math.max(0, Math.ceil((instant.getTime() - Date.now()) / 1000));
+    const parts = [Math.floor(seconds / 86400), Math.floor(seconds / 3600) % 24,
+      Math.floor(seconds / 60) % 60, seconds % 60];
+    clock.textContent = seconds ? parts.map((value, i) => value + ['d', 'h', 'm', 's'][i]).join('  ') : 'It’s date time!';
+    if (!seconds) clearInterval(countdownTimer);
+  }
+  clearInterval(countdownTimer);
+  countdownTimer = setInterval(updateClock, 1000);
+  updateClock();
+  showScreen('countdown', 3, 'Counting down');
+}
+
+document.getElementById('open-countdown').addEventListener('click', () => showCountdown(confirmedDate));
+countdownBack.addEventListener('click', () => {
+  clearInterval(countdownTimer);
+  if (confirmedDate) {
+    showScreen('done', 3, 'Date picked');
+  } else {
+    const invitation = new URL(location.href);
+    invitation.hash = '';
+    history.replaceState(null, '', invitation.href);
+    location.reload();
+  }
+});
+
+document.getElementById('copy-countdown').addEventListener('click', async () => {
+  const url = new URL(location.href);
+  url.hash = new URLSearchParams({
+    date: confirmedDate.instant.toISOString(), activity: confirmedDate.activity,
+  }).toString();
+  try {
+    await navigator.clipboard.writeText(url.href);
+    copyFallback.hidden = true;
+    copyStatus.textContent = 'Countdown link copied!';
+  } catch {
+    copyFallback.value = url.href;
+    copyFallback.hidden = false;
+    copyFallback.select();
+    copyStatus.textContent = 'Copy the countdown link below.';
+  }
+});
+
+document.getElementById('save-ticket').addEventListener('click', async () => {
+  const { activity, instant } = confirmedDate;
+  const canvas = document.createElement('canvas');
+  canvas.width = 1080;
+  canvas.height = 640;
+  const context = canvas.getContext('2d');
+  const stamp = document.getElementById('ticket-stamp');
+  try {
+    await stamp.decode();
+    context.fillStyle = '#d9c0ef';
+    context.fillRect(0, 0, 1080, 640);
+    context.fillStyle = '#fff4fd';
+    context.fillRect(32, 32, 1016, 576);
+    context.strokeStyle = '#9e6ac5';
+    context.lineWidth = 3;
+    context.setLineDash([9, 8]);
+    context.strokeRect(52, 52, 976, 536);
+    context.drawImage(stamp, 765, 171, 176 * stamp.naturalWidth / stamp.naturalHeight, 176);
+    context.fillStyle = '#7046a6';
+    context.font = '26px monospace';
+    context.fillText('DATE NIGHT  /  ADMIT TWO', 90, 125);
+    context.font = 'bold 62px sans-serif';
+    context.fillText('It’s a date!', 90, 260);
+    context.font = 'bold 35px sans-serif';
+    context.fillText(activity, 90, 335);
+    context.font = '26px sans-serif';
+    context.fillText(localFormats[perthZone].format(instant) + ' · Perth time', 90, 390);
+    context.font = '25px monospace';
+    context.fillText('For My Yabie, with love', 90, 520);
+    const download = document.createElement('a');
+    download.download = 'date-night-for-yabie.png';
+    download.href = canvas.toDataURL('image/png');
+    download.click();
+    copyStatus.textContent = 'Your little keepsake is ready.';
+  } catch {
+    copyStatus.textContent = 'The ticket image couldn’t be saved. You can still screenshot your ticket.';
+  }
+});
+
+const shared = new URLSearchParams(location.hash.slice(1));
+const sharedDate = shared.get('date');
+const sharedActivity = shared.get('activity');
+if (sharedDate && /^\d{4}-\d{2}-\d{2}T\d{2}:00:00\.000Z$/.test(sharedDate) &&
+    ['Cozy movie night', 'Game night'].includes(sharedActivity)) {
+  const instant = new Date(sharedDate);
+  if (Number.isFinite(instant.getTime()) && instant.toISOString() === sharedDate) {
+    mailNotice.hidden = true;
+    dateDesktop.hidden = false;
+    countdownBack.textContent = 'Open the invitation';
+    showCountdown({ activity: sharedActivity, instant });
+  }
+}
 
 document.getElementById('edit-date').addEventListener('click', () => showScreen('plan', 3, 'Choose your date'));
 document.getElementById('copy-date').addEventListener('click', async () => {

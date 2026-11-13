@@ -30,7 +30,6 @@ function paintUnlockCosmos(now){
     let x=cx+lx*(1-form)+hx*form+Math.cos(p.a)*curl,y=cy+ly*(1-form)+hy*form+Math.sin(p.a)*curl;
     const pa=p.a+t*.9,pr=span*(.45+p.r*.55)*(1+flight*5);
     x=x*(1-portal)+(cx+Math.cos(pa)*pr)*portal;y=y*(1-portal)+(cy+Math.sin(pa)*pr*.8)*portal;
-    // The last particles settle onto the actual galaxy's camera projection.
     if(galaxyOpen){const dust=galaxyCloud[i%galaxyCloud.length],a=dust.a-galaxyTime*.075,target=projectWorld({x:Math.cos(a)*dust.r,y:dust.y,z:Math.sin(a)*dust.r}),settle=easeUnlock((t-3.55)/.65);x=x*(1-settle)+target.x*settle;y=y*(1-settle)+target.y*settle;}
     const alpha=easeUnlock((t-.3)/.4)*(.3+p.s*.65),dot=.5+p.s*1.3;
     uc.fillStyle=`rgba(255,${Math.round(105+p.s*120)},${Math.round(165+p.s*80)},${alpha})`;uc.beginPath();uc.arc(x,y,dot,0,Math.PI*2);uc.fill();
@@ -78,7 +77,6 @@ $('cosmic-message').textContent=settings.message;
 $('cosmic-from').textContent='Always yours, '+settings.from;
 const envelopeDialog=$('envelope-dialog');
 const orbitingEnvelopes=[];
-// Read status lasts only until the page is reloaded.
 const readNoteKeys=new Set();
 (settings.loveNotes||[]).forEach((note,index)=>{
   const envelope=document.createElement('button');
@@ -113,7 +111,6 @@ envelopeDialog.addEventListener('click',event=>{if(event.target===envelopeDialog
 let envelopeTime=0;
 function envelopeWorld(orbit){
   if(orbit.inner){
-    // Match the spiral-arm equation and rotation used by the galaxy particles.
     const r=.36+(orbit.phase/(Math.PI*2))*.35;
     const angle=orbit.phase+r*5.7-galaxyTime*.075;
     return {x:Math.cos(angle)*r,y:0,z:Math.sin(angle)*r};
@@ -171,7 +168,6 @@ function drawOrbitHeart(x,y,scale,alpha){
   gc.strokeStyle=`rgba(255,157,191,${alpha})`;gc.lineWidth=1.15/scale;
   gc.beginPath();gc.moveTo(0,7);gc.bezierCurveTo(-15,-2,-9,-13,0,-6);gc.bezierCurveTo(9,-13,15,-2,0,7);gc.fill();gc.stroke();gc.restore();
 }
-// Every object shares the same perspective camera, including the clickable envelopes.
 const camera={yaw:0,pitch:.48,targetYaw:0,targetPitch:.48};
 let dragPointer=null,dragX=0,dragY=0;
 function projectWorld(p){
@@ -265,7 +261,6 @@ function paintGalaxy(){
     else{const core=Math.max(0,1-p.r*2.7);gc.fillStyle=`rgba(${p.warm>.85?190:255},${Math.round(65+core*160+p.brightness*45)},${Math.round(130+core*90+p.warm*50)},${.18+p.brightness*.65})`;}
     gc.fillRect(p.x,p.y,p.size,p.size);
   }
-  // A luminous accretion ring sits inside the same three-dimensional plane.
   glowAt({x:0,y:0,z:0},.16,'#ffbda455');
   gc.save();gc.globalCompositeOperation='lighter';
   for(let i=0;i<700;i++){const seed=i*2.39996,r=.025+(.5+.5*Math.sin(i*17.13))*.13,a=seed+galaxyTime*.3,p=projectWorld({x:Math.cos(a)*r,y:Math.sin(seed)*.008,z:Math.sin(a)*r});gc.fillStyle=i%4?'#ff9db570':'#ffe3ccbb';gc.fillRect(p.x,p.y,p.scale,p.scale);}

@@ -52,7 +52,6 @@ function draw(){
     hc.fillStyle=`rgba(${p.s>.8?'255,211,227':'248,94,148'},${(.2+p.s*.65)*(.72+.28*Math.sin(time+p.phase))})`;
     hc.beginPath();hc.arc(cx+x*r*scale+drift,cy-y*r*scale+drift,p.s*1.1+.25,0,Math.PI*2);hc.fill();
   }
-  // A soft orbital galaxy underneath the particle heart.
   for(let i=0;i<470;i++){const p=dots[i],a=p.a+time*.13,rad=(.1+p.r*.38)*hw;const x=Math.cos(a+rad*.018)*rad,y=Math.sin(a+rad*.018)*rad*.19;hc.fillStyle=`rgba(235,75,119,${p.s*.34})`;hc.fillRect(cx+x,hh*.84+y,1.1,1.1);}
   burst*=.97;
 }
@@ -72,7 +71,6 @@ let entered = false;
 function enterPage(event){
   if(entered)return;
   entered=true;
-  // Start playback in the click itself so browsers recognize the user gesture.
   void startMusic();
   document.body.classList.remove('awaiting-entry');
   document.body.classList.add('revealing');
@@ -96,7 +94,6 @@ for(let i=0;i<65;i++){const particle=document.createElement('span');heartText(pa
 reduceMotion.addEventListener('change', e=>{paused=e.matches;draw();});
 window.addEventListener('resize',resize);resize();musicLabel();requestAnimationFrame(tick);
 
-// Extra atmosphere stays behind the page and respects reduced motion.
 const atmosphere = document.createElement('div');
 atmosphere.className='atmosphere';atmosphere.setAttribute('aria-hidden','true');
 for(let i=0;i<3;i++){const glow=document.createElement('div');glow.className='love-glow glow-'+i;atmosphere.appendChild(glow);}

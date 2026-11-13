@@ -41,7 +41,7 @@
       <div class="mail-notice-content">
         <div class="inbox-sidebar"><img src="/cinnamoroll.png" alt=""><span>✉ Inbox</span><strong>1 unread</strong></div>
         <div class="inbox-messages">
-          <h1 id="mail-heading">Inbox</h1>
+          <div class="inbox-heading"><h1 id="mail-heading">Inbox</h1><button type="button" class="secret-stamp" id="open-secret" aria-label="Open the heart stamp"><img src="/heart-icon.webp" alt=""></button></div>
           <button class="inbox-message" id="open-inbox" type="button">
             <img src="/hello-kitty.png" alt="">
             <span><small>From your love</small><strong>A little invitation for My Yabie</strong><span>Open this for a Date Night surprise.</span></span>
@@ -164,15 +164,30 @@
           <div class="date-celebration" aria-hidden="true">
             <span>♥</span><span>✦</span><span>♥</span><span>✧</span><span>♥</span><span>✦</span>
           </div>
-          <img src="/my-melody.png" alt="">
-          <h2 tabindex="-1">It’s a date!</h2>
-          <p class="description" id="date-summary"></p>
+          <div class="keepsake-ticket">
+            <div class="ticket-heading"><span>DATE NIGHT</span><span>ADMIT TWO</span></div>
+            <img src="/hello-kitty.png" alt="" id="ticket-stamp">
+            <h2 tabindex="-1">It’s a date!</h2>
+            <p id="ticket-activity"></p>
+            <p class="description" id="date-summary"></p>
+          </div>
           <div class="love-actions">
             <button class="primary" id="copy-date">Copy our plan</button>
+            <button class="secondary" id="save-ticket">Save ticket</button>
+            <button class="secondary" id="copy-countdown">Copy countdown link</button>
+            <button class="secondary" id="open-countdown">View countdown</button>
             <button class="secondary" id="edit-date">Change it</button>
           </div>
           <p class="copy-status" id="copy-status" role="status"></p>
           <textarea class="copy-fallback" id="copy-fallback" aria-label="Plan to copy" readonly hidden></textarea>
+        </section>
+        <section class="screen confirmation countdown-screen" id="countdown" hidden>
+          <img src="/cinnamoroll.png" alt="">
+          <h2 tabindex="-1">Our date countdown</h2>
+          <p id="countdown-activity"></p>
+          <p class="countdown-clock" id="countdown-clock" role="timer"></p>
+          <p class="description" id="countdown-local"></p>
+          <button class="secondary" id="countdown-back">Back to ticket</button>
         </section>
       </div>
       <footer class="statusbar">
@@ -182,5 +197,26 @@
     </main>
     <footer class="desktop-footer">Made with love, just for you <span aria-hidden="true">♥</span></footer>
   </div>
+  <dialog class="calendar surprise-dialog" id="activity-reveal" aria-labelledby="reveal-title">
+    <div class="calendar-titlebar">date-night.exe</div>
+    <div class="surprise-content">
+      <div class="reveal-art" aria-hidden="true">
+        <span class="cinema-seats"><i></i><i></i></span>
+        <span class="arcade-players"><span><img src="/my-melody.png" alt="">Player 1 · Yabie</span><span><img src="/kuromi.png" alt="">Player 2 · Gooby</span></span>
+      </div>
+      <h2 id="reveal-title"></h2>
+      <p id="reveal-copy"></p>
+      <form method="dialog"><button class="primary">See our ticket</button></form>
+    </div>
+  </dialog>
+  <dialog class="calendar surprise-dialog" id="secret-note" aria-labelledby="secret-title">
+    <div class="calendar-titlebar">A note for My Yabie</div>
+    <div class="surprise-content">
+      <img class="secret-friend" src="/my-melody.png" alt="">
+      <h2 id="secret-title">My favorite part</h2>
+      <p>I’m looking forward to hearing you laugh on our call. Movie or game, my favorite part is getting to spend the night with you.</p>
+      <form method="dialog"><button class="primary">Seal it with a kiss</button></form>
+    </div>
+  </dialog>
 </body>
 </html>

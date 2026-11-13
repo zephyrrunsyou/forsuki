@@ -1,5 +1,3 @@
-// Personalize everything here, then refresh the page.
-// This is a playful password gate, not secure protection: visitors can read this file.
 window.SUKI = {
   name: 'Suki',
   from: 'Your favorite person',
@@ -8,7 +6,6 @@ window.SUKI = {
   title: 'A little universe, just for you.',
   message: 'Of all the stars, in all the galaxies, I’m so glad I found you. You make the ordinary feel like magic. This tiny corner of the universe will always be yours.',
   floatingWords: ['my love', 'always you', 'to infinity', 'you + me', 'forever & ever', 'my yabie', 'beautiful girl'],
-  // Each envelope opens one of these notes. Add or edit as many as you like.
   loveNotes: [
     { title: 'My favorite place', message: 'Anywhere feels a little more like home when I’m with you.' },
     { title: 'A tiny reminder', message: 'You’re loved on the bright days, the quiet days, and all the days in between.' },

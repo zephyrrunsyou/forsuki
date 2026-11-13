@@ -331,3 +331,47 @@ fieldset { min-width: 0; padding: 0; border: 0; margin: 0; } legend { font-size:
   .inbox-message { transition: background .18s, border-color .18s; }
 }
 @keyframes notification-in { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0; } }
+
+.inbox-heading { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.secret-stamp { width: 33px; height: 32px; border: 0; background: transparent; padding: 4px; }
+.secret-stamp img { width: 100%; height: 100%; object-fit: contain; }
+.secret-stamp:hover { background: #f6ddf5; border-radius: 8px; }
+.keepsake-ticket {
+  position: relative; width: min(100%, 490px); padding: 14px 24px 20px; margin-bottom: 20px;
+  border: 2px solid var(--border); border-radius: 14px; background: #fff4fd;
+  box-shadow: 4px 5px #7650a82e;
+}
+.ticket-heading {
+  display: flex; justify-content: space-between; gap: 12px; padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border); font: 11px Silkscreen, monospace; color: var(--violet);
+}
+.keepsake-ticket > img { width: 82px; height: 90px; object-fit: contain; margin-top: 10px; }
+.keepsake-ticket h2 { font-size: clamp(24px, 5vw, 35px); }
+#ticket-activity { font-weight: 700; margin: 12px 0 0; }
+.keepsake-ticket .description { margin: 5px auto 0; }
+#done .love-actions { justify-content: center; }
+.countdown-clock {
+  margin: 4px 0; padding: 13px; border: 1px dashed var(--border); border-radius: 8px;
+  background: #f2e1fa; color: var(--ink); font: clamp(15px, 4vw, 27px) Silkscreen, monospace;
+}
+.surprise-dialog { width: min(440px, calc(100% - 24px)); }
+.surprise-content { padding: 20px; text-align: center; }
+.surprise-content h2 { font-size: clamp(19px, 5vw, 27px); }
+.surprise-content p { line-height: 1.6; color: var(--muted); }
+.secret-friend { width: 83px; height: 94px; object-fit: contain; margin-bottom: 10px; }
+.reveal-art { min-height: 114px; display: grid; place-items: center; border-radius: 10px; background: #eee0fa; margin-bottom: 18px; }
+.movie-reveal .reveal-art { background: radial-gradient(ellipse at 50% 0%, #fff2cf, #edc4f1 44%, #745396); }
+.surprise-dialog:not(.movie-reveal) .reveal-art { background: repeating-linear-gradient(0deg, #f4e6ff 0 3px, #ead6f8 3px 4px); border: 2px solid #ba91db; }
+.cinema-seats { display: none; gap: 12px; padding-top: 18px; }
+.movie-reveal .cinema-seats { display: flex; }
+.movie-reveal .arcade-players { display: none; }
+.cinema-seats i { width: 52px; height: 52px; border: 3px solid #a04a86; border-bottom: 13px solid #a04a86; border-radius: 13px 13px 8px 8px; background: #ed9cc9; box-shadow: inset 0 0 0 4px #f7c4df; }
+.arcade-players { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 10px; }
+.arcade-players span { display: grid; justify-items: center; gap: 5px; font: 10px Silkscreen, monospace; }
+.arcade-players img { width: 49px; height: 57px; object-fit: contain; }
+@media (prefers-reduced-motion: no-preference) {
+  .surprise-dialog[open] .secret-friend, .surprise-dialog[open] .arcade-players img { animation: happy-hop .65s ease-out both; }
+  .surprise-dialog[open] .arcade-players span:nth-child(2) img { animation-delay: .18s; }
+  .surprise-dialog[open] .cinema-seats { animation: calendar-in .7s ease-out both; }
+  .confirmation:not([hidden]) .keepsake-ticket { animation: calendar-in .45s ease-out both; }
+}
