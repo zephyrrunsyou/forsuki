@@ -3,5 +3,8 @@
   "framework": null,
   "buildCommand": "",
   "installCommand": "",
-  "outputDirectory": "public"
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/datenight", "destination": "/datenight/index.html" }
+  ]
 }

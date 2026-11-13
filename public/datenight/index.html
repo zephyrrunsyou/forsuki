@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#c7b3f2">
+  <title>Date Night • For Yabie</title>
+  <meta name="description" content="You’ve got mail, My Yabie! Open your little love letter and pick our next date night.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Yabie’s Desktop">
+  <meta property="og:title" content="💌 Date Night • For Yabie">
+  <meta property="og:description" content="You’ve got mail, My Yabie! Open your little love letter and pick our next date night.">
+  <meta property="og:image" content="/hello-kitty.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Hello Kitty in a pink dress holding a heart">
+  <link rel="icon" href="/heart-icon.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/datenight/date-night.css">
+  <script src="/datenight/date-night.js" defer></script>
+</head>
+<body>
+  <audio id="date-music" src="/datenight/background-music.mp3" preload="auto" loop></audio>
+  <div class="date-volume">
+    <button id="date-sound" type="button" aria-label="Mute sound" title="Mute sound" aria-pressed="false">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M11 5 6 9H3v6h3l5 4V5Z"/>
+        <path class="date-sound-waves" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/>
+        <path class="date-sound-off" d="m16 9 6 6m0-6-6 6"/>
+      </svg>
+    </button>
+    <div class="date-volume-slider">
+      <input id="date-volume" type="range" min="0" max="100" value="35" aria-label="Music volume">
+      <output id="date-volume-value" for="date-volume">35%</output>
+    </div>
+  </div>
+  <section class="mail-entrance mail-notice" id="mail-notice" aria-labelledby="mail-heading">
+    <div class="mail-window">
+      <div class="titlebar"><span><img src="/heart-icon.webp" alt=""> yabie-mail.exe</span><span class="window-controls" aria-hidden="true"><b>−</b><b>□</b><b>×</b></span></div>
+      <div class="mail-notice-content">
+        <div class="inbox-sidebar"><img src="/cinnamoroll.png" alt=""><span>✉ Inbox</span><strong>1 unread</strong></div>
+        <div class="inbox-messages">
+          <h1 id="mail-heading">Inbox</h1>
+          <button class="inbox-message" id="open-inbox" type="button">
+            <img src="/hello-kitty.png" alt="">
+            <span><small>From your love</small><strong>A little invitation for My Yabie</strong><span>Open this for a Date Night surprise.</span></span>
+            <span class="unread-dot" aria-label="Unread"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mail-toast" role="status"><img src="/cinnamoroll.png" alt=""><span><strong>You’ve got mail!</strong><small>One new love letter</small></span></div>
+  </section>
+  <section class="mail-entrance" id="mail-entrance" aria-label="Date Night invitation" hidden>
+    <button class="mail-open" id="mail-open" type="button">
+      <span class="mail-art" aria-hidden="true">
+        <span class="mail-sparkle">✦</span><span class="mail-sparkle">✧</span>
+        <span class="mail-sparkle">♥</span><span class="mail-sparkle">✦</span>
+        <span class="mail-back"></span>
+        <span class="mail-letter">
+          <span class="mail-letter-face mail-letter-front"><img src="/hello-kitty.png" alt=""><span>For My Yabie</span></span>
+          <span class="mail-letter-face mail-letter-preview">
+            <span class="mini-titlebar"><img src="/heart-icon.webp" alt=""> date-night.exe <span>− □ ×</span></span>
+            <span class="mini-content"><span>Are you ready<br>for Date Night?</span><img src="/my-melody.png" alt=""></span>
+            <span class="mini-start">Start ▶</span>
+          </span>
+        </span>
+        <span class="mail-pocket"></span>
+        <span class="mail-flap"></span>
+        <img class="mail-seal" src="/heart-icon.webp" alt="">
+      </span>
+      <span class="mail-caption">Click the envelope to open it, My Love.</span>
+    </button>
+  </section>
+  <div class="desktop" id="date-desktop" hidden>
+    <header class="desktop-bar">
+      <span class="desktop-brand"><img src="/hello-kitty.png" alt=""> Yabie's Desktop</span>
+      <span class="desktop-heart" aria-hidden="true">♥</span>
+    </header>
+    <main class="window">
+      <div class="titlebar">
+        <span><img src="/heart-icon.webp" alt=""> date-night.exe</span>
+        <span class="window-controls" aria-hidden="true"><b>−</b><b>□</b><b>×</b></span>
+      </div>
+      <div class="window-content" id="window-content">
+        <section class="screen split" id="start">
+          <div class="screen-copy">
+            <p class="eyebrow"><span></span> An invitation for My Yabie</p>
+            <h1>Are you ready<br class="wide-break"> for <em>Date Night?</em></h1>
+            <p class="description">I made you a little invitation. Come pick something sweet for us to do together.</p>
+            <button class="primary" id="start-button">Start <span aria-hidden="true">▶</span></button>
+          </div>
+          <div class="illustration" aria-hidden="true">
+            <span class="star star-a">✦</span><span class="star star-b">✧</span><span class="star star-c">✦</span><span class="star star-d">✧</span>
+            <div class="orbit"></div>
+            <img class="friend kitty" src="/hello-kitty.png" alt="">
+            <img class="friend melody" src="/my-melody.png" alt="">
+            <img class="friend cinnamon" src="/cinnamoroll.png" alt="">
+            <img class="floating-heart" src="/heart-icon.webp" alt="">
+          </div>
+        </section>
+        <section class="screen split" id="love" hidden>
+          <div class="screen-copy">
+            <h2 tabindex="-1">I love you<em>!</em></h2>
+            <p class="description">Even an ordinary night feels like a little adventure when it’s with you.</p>
+            <div class="love-actions">
+              <button class="primary" id="love-button">I love you too <span aria-hidden="true">♥</span></button>
+              <span id="runaway-slot"><button class="secondary runaway" id="runaway" type="button" disabled>Go way</button></span>
+            </div>
+          </div>
+          <div class="illustration love-art" aria-hidden="true">
+            <span class="star star-a">✦</span><span class="star star-b">✧</span><span class="star star-c">✦</span>
+            <div class="orbit"></div>
+            <img class="friend kitty" src="/hello-kitty.png" alt="">
+            <img class="friend kuromi" src="/kuromi.png" alt="">
+            <img class="floating-heart" src="/heart-icon.webp" alt="">
+          </div>
+        </section>
+        <section class="screen picker" id="plan" hidden>
+          <h2 tabindex="-1">Pick our date</h2>
+          <p class="description">Choose what sounds fun, then pick a day for us.</p>
+          <form id="date-form" novalidate>
+            <fieldset id="activity-field" aria-describedby="activity-error">
+              <legend>What should we do?</legend>
+              <div class="date-options">
+                <label><input type="radio" name="activity" value="Cozy movie night" required><span><img src="/cinnamoroll.png" alt="">Cozy movie night</span></label>
+                <label><input type="radio" name="activity" value="Game night"><span><img src="/kuromi.png" alt="">Game night</span></label>
+              </div>
+              <p class="date-error" id="activity-error" role="alert" hidden><img src="/pompompurin.png" alt=""> Pick something fun for us, Gooby</p>
+            </fieldset>
+            <div class="plan-actions">
+              <div class="date-field">
+                <span id="date-label">Pick a day in Perth</span>
+                <button class="secondary date-trigger" id="open-calendar" type="button" aria-labelledby="date-label open-calendar" aria-haspopup="dialog" aria-describedby="date-error">Choose a date</button>
+                <input type="hidden" id="date" name="date">
+              </div>
+            </div>
+            <p class="date-error" id="date-error" role="alert" hidden><img src="/my-melody.png" alt=""> Select a date Gooby</p>
+            <fieldset class="time-field" id="time-field" hidden>
+              <legend>Pick a time in Perth</legend>
+              <div class="time-options" id="time-options"></div>
+              <p class="date-error" id="time-error" role="alert" hidden><img src="/my-melody.png" alt=""> Pick a time too, Gooby</p>
+            </fieldset>
+            <button class="primary save-date" type="submit">Save our date <span aria-hidden="true">♥</span></button>
+          </form>
+          <dialog class="calendar" id="calendar" aria-labelledby="calendar-title">
+            <div class="calendar-titlebar">
+              <span><img src="/hello-kitty.png" alt=""> Pick a day</span>
+              <button type="button" id="close-calendar" aria-label="Close calendar">×</button>
+            </div>
+            <div class="calendar-body">
+              <div class="calendar-month">
+                <button type="button" id="previous-month" aria-label="Previous month">‹</button>
+                <h3 id="calendar-title" aria-live="polite"></h3>
+                <button type="button" id="next-month" aria-label="Next month">›</button>
+              </div>
+              <div class="calendar-weekdays" aria-hidden="true"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+              <div class="calendar-days" id="calendar-days"></div>
+            </div>
+          </dialog>
+        </section>
+        <section class="screen confirmation" id="done" hidden>
+          <div class="date-celebration" aria-hidden="true">
+            <span>♥</span><span>✦</span><span>♥</span><span>✧</span><span>♥</span><span>✦</span>
+          </div>
+          <img src="/my-melody.png" alt="">
+          <h2 tabindex="-1">It’s a date!</h2>
+          <p class="description" id="date-summary"></p>
+          <div class="love-actions">
+            <button class="primary" id="copy-date">Copy our plan</button>
+            <button class="secondary" id="edit-date">Change it</button>
+          </div>
+          <p class="copy-status" id="copy-status" role="status"></p>
+          <textarea class="copy-fallback" id="copy-fallback" aria-label="Plan to copy" readonly hidden></textarea>
+        </section>
+      </div>
+      <footer class="statusbar">
+        <span id="window-status">Invitation</span>
+        <div class="progress" aria-label="Step 1 of 3"><i></i><i></i><i></i></div>
+      </footer>
+    </main>
+    <footer class="desktop-footer">Made with love, just for you <span aria-hidden="true">♥</span></footer>
+  </div>
+</body>
+</html>
